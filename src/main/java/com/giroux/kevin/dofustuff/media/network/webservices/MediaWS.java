@@ -1,9 +1,10 @@
-package com.thalesgroup.trip.webservices;
+package com.giroux.kevin.dofustuff.media.network.webservices;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
+import com.giroux.kevin.dofustuff.commons.media.ErrorMedia;
+import com.giroux.kevin.dofustuff.commons.media.Media;
+import com.giroux.kevin.dofustuff.commons.media.TypeMedia;
+import com.giroux.kevin.dofustuff.media.network.exception.NotFoundException;
+import com.giroux.kevin.dofustuff.media.services.MediaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +12,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
-import com.thalesgroup.trip.common.dto.error.ErrorMedia;
-import com.thalesgroup.trip.common.dto.media.Media;
-import com.thalesgroup.trip.common.dto.media.TypeMedia;
-import com.thalesgroup.trip.common.util.TripUtils;
-import com.thalesgroup.trip.services.MediaService;
+import java.io.File;
+import java.util.List;
 
 /**
  * Exposition des web services pour le traitement des medias
@@ -76,26 +67,6 @@ public class MediaWS {
 	@RequestMapping(name ="Create/Update Media", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, value="/metadata")
 	public void createMedia(@RequestBody Media media) {
 		mediaService.createMedia(media);
-	}
-	
-	/**
-	 * Create a file
-	 * @param file
-	 * @throws IOException 
-	 */
-	@RequestMapping(name ="Create File", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public void createFile(@RequestParam("fileData") MultipartFile file, @RequestParam("metadata") String mediaStr ) {
-		
-		try {
-			Media media = TripUtils.deserializerJSON(mediaStr, Media.class);
-			mediaService.createFile(file,media);
-		}catch(IOException ex){ 
-			LOG.error("Invalid data",ex);
-			throw new BadRequestException(ErrorMedia.ERR_MEDIA_04.toString());
-		}catch (IllegalArgumentException e) {
-			LOG.error("Cannot create file",e);
-			throw new BadRequestException(e.getMessage());
-		}
 	}
 
 	/**

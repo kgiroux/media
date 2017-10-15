@@ -1,19 +1,18 @@
-package com.thalesgroup.trip.persistence;
+package com.giroux.kevin.dofustuff.media.persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.giroux.kevin.dofustuff.commons.media.Media;
+import com.giroux.kevin.dofustuff.commons.media.TypeMedia;
+import com.giroux.kevin.dofustuff.media.persistence.entity.MetaDataMediaEntity;
+import com.giroux.kevin.dofustuff.media.persistence.factory.MetaDataMediaFactory;
+import com.giroux.kevin.dofustuff.media.persistence.repository.MediaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
-import com.thalesgroup.trip.common.dto.media.Media;
-import com.thalesgroup.trip.common.dto.media.TypeMedia;
-import com.thalesgroup.trip.entity.MetaDataMediaEntity;
-import com.thalesgroup.trip.factory.MetaDataMediaFactory;
-import com.thalesgroup.trip.repository.MediaRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation de la persistence des métadata des médias

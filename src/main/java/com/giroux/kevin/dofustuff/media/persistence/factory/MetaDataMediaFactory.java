@@ -1,12 +1,12 @@
-package com.thalesgroup.trip.factory;
+package com.giroux.kevin.dofustuff.media.persistence.factory;
 
+import com.giroux.kevin.dofustuff.commons.media.Media;
+import com.giroux.kevin.dofustuff.commons.utils.Factory;
+import com.giroux.kevin.dofustuff.media.persistence.entity.MetaDataMediaEntity;
 import org.springframework.stereotype.Component;
 
-import com.thalesgroup.trip.common.dto.media.Media;
-import com.thalesgroup.trip.entity.MetaDataMediaEntity;
-
 @Component
-public class MetaDataMediaFactory {
+public class MetaDataMediaFactory implements Factory<MetaDataMediaEntity,Media>{
 	
     /**
      * Créer une entité à partir d'un dto
@@ -22,7 +22,6 @@ public class MetaDataMediaFactory {
     	metaDataEntity.setPath(media.getPath());
     	metaDataEntity.setName(media.getName());
     	metaDataEntity.setFileName(media.getFileName());
-    	metaDataEntity.setCategories(media.getCategories());
     	metaDataEntity.setTypeMedia(media.getTypeMedia());
 
         return metaDataEntity;
@@ -42,7 +41,6 @@ public class MetaDataMediaFactory {
     	media.setPath(metaDataEntity.getPath());
     	media.setName(metaDataEntity.getName());
     	media.setFileName(metaDataEntity.getFileName());
-        media.setCategories(metaDataEntity.getCategories());
         media.setTypeMedia(metaDataEntity.getTypeMedia());
         
         return media;

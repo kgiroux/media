@@ -1,11 +1,9 @@
-package com.thalesgroup.trip.entity;
+package com.giroux.kevin.dofustuff.media.persistence.entity;
 
-import java.util.List;
+import com.giroux.kevin.dofustuff.commons.media.TypeMedia;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.*;
 
-import com.thalesgroup.trip.common.dto.media.TypeMedia;
 
 /**
  * Classe représentant les meta-data persisté en BD
@@ -13,38 +11,40 @@ import com.thalesgroup.trip.common.dto.media.TypeMedia;
  * @author scadot
  *
  */
-@Document(collection = "metadatamedia")
+@Entity
+@Table(name="media", schema="sch_dofustuff")
 public class MetaDataMediaEntity {
 	/**
 	 * Identifiant fonctionnel
 	 */
 	@Id
+	@Column
 	private String id;
 
 	/**
 	 * Chemin complet du fichier
 	 */
+	@Column
 	private String path;
 
 	/**
 	 * Nom fonctionnel du média
 	 */
+	@Column
 	private String name;
 
 	/**
 	 * Nom du fichier
 	 */
+	@Column
 	private String fileName;
 
 	/**
 	 * Type du média
 	 */
+	@Column
+	@Enumerated(EnumType.STRING)
 	private TypeMedia typeMedia;
-
-	/**
-	 * Catégorie du média
-	 */
-	private List<String> categories;
 
 	public String getId() {
 		return id;
@@ -78,14 +78,6 @@ public class MetaDataMediaEntity {
 		this.fileName = fileName;
 	}
 
-	public List<String> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<String> categories) {
-		this.categories = categories;
-	}
-	
 	public TypeMedia getTypeMedia() {
 		return typeMedia;
 	}

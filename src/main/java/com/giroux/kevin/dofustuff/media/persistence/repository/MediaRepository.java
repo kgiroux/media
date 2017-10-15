@@ -1,18 +1,19 @@
-package com.thalesgroup.trip.repository;
+package com.giroux.kevin.dofustuff.media.persistence.repository;
+
+import com.giroux.kevin.dofustuff.commons.media.TypeMedia;
+import com.giroux.kevin.dofustuff.media.persistence.entity.MetaDataMediaEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.thalesgroup.trip.common.dto.media.TypeMedia;
-import com.thalesgroup.trip.entity.MetaDataMediaEntity;
 
 /**
  * Magic class from mongo to perform db request
  * @author scadot
  *
  */
-public interface MediaRepository extends MongoRepository<MetaDataMediaEntity, String> {
+@Repository
+public interface MediaRepository extends CrudRepository<MetaDataMediaEntity, String> {
 	/**
 	 * retrieve metadata from id
 	 * @param id

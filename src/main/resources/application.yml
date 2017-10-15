@@ -1,4 +1,3 @@
-#mongodb configuration
 spring:
   jpa:
     database: POSTGRESQL
@@ -21,6 +20,7 @@ spring:
 server:
   tomcat:
     basedir: /tmp
+  port: 8081
 endpoints:
   beans:
     sensitive: false

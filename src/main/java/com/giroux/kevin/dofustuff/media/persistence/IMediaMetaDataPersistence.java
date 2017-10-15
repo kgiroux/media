@@ -1,10 +1,10 @@
-package com.thalesgroup.trip.persistence;
+package com.giroux.kevin.dofustuff.media.persistence;
+
+import com.giroux.kevin.dofustuff.commons.media.Media;
+import com.giroux.kevin.dofustuff.commons.media.TypeMedia;
+import com.giroux.kevin.dofustuff.media.persistence.entity.MetaDataMediaEntity;
 
 import java.util.List;
-
-import com.thalesgroup.trip.common.dto.media.Media;
-import com.thalesgroup.trip.common.dto.media.TypeMedia;
-import com.thalesgroup.trip.entity.MetaDataMediaEntity;
 
 /**
  * Interface de gestion de la persistence des métadata

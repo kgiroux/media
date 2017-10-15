@@ -30,6 +30,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.giroux.kevin.dofustuff</groupId>
+			<artifactId>commons</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
 		<!-- ###### Spring Boot ####### -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,7 +42,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,7 +64,10 @@
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		<!-- End of AOP - Interceptor for WS -->
-
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 		<!-- Utilitaire -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -114,28 +122,6 @@
 							</goals>
 						</execution>
 					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>wagon-maven-plugin</artifactId>
-					<version>${wagon.version}</version>
-					<dependencies>
-						<dependency>
-							<groupId>org.apache.maven.wagon</groupId>
-							<artifactId>wagon-ssh</artifactId>
-							<version>${wagon.ssh.version}</version>
-						</dependency>
-					</dependencies>
-					<configuration>
-						<serverId>${media.server}</serverId>
-						<fromDir>${project.build.directory}</fromDir>
-						<toDir>${deployement.toDir}</toDir>
-						<url>${url.media}</url>
-						<includes>*.jar</includes>
-						<commands>
-							<command>${command.to.run.after.deploy}</command>
-						</commands>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
