@@ -58,7 +58,7 @@ public class MetaDataMediaPersistence implements IMediaMetaDataPersistence {
 		if (media != null) {
 			metadata = mediaRepository.save(factory.dtoToEntity(media));
 		} else {
-			LOG.error("Impossible de créer la ressource en base de donnée");
+			LOG.error("Impossible de créer la ressource en base de données");
 		}
 		return metadata;
 	}
@@ -72,7 +72,7 @@ public class MetaDataMediaPersistence implements IMediaMetaDataPersistence {
 	public List<Media> retrieveMetaDataFromType(TypeMedia type) {
 		List<MetaDataMediaEntity> metadataEntities = mediaRepository.findByTypeMedia(type);
 		if(CollectionUtils.isEmpty(metadataEntities)){
-			return null;
+			return new ArrayList<>();
 		}
 		List<Media> media = new ArrayList<>();
 		for(MetaDataMediaEntity entity: metadataEntities){
@@ -85,7 +85,7 @@ public class MetaDataMediaPersistence implements IMediaMetaDataPersistence {
 	public List<Media> retrieveMetaDataFromIdOrName(String id, String name) {
 		List<MetaDataMediaEntity> metadataEntities = mediaRepository.findByIdOrName(id, name);
 		if(CollectionUtils.isEmpty(metadataEntities)){
-			return null;
+			return new ArrayList<>();
 		}
 		List<Media> media = new ArrayList<>();
 		for(MetaDataMediaEntity entity: metadataEntities){

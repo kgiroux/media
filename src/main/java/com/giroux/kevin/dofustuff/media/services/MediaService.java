@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,11 +32,6 @@ import java.util.List;
  */
 @Service("mediaService")
 public class MediaService {
-
-	/**
-	 * Root location
-	 */
-	private Path rootLocation;
 
 	/**
 	 * Logger
@@ -87,7 +82,7 @@ public class MediaService {
 	 *
 	 * @param id
 	 */
-	public void deleteMedia(String id) throws NotFoundException {
+	public void deleteMedia(String id) {
 		Media media = mediaPersistence.retrieveMetaDataMedia(id);
 		if (media == null) {
 			LOG.error("Le fichier media pour la référence {} n'est plus disponible", id);
@@ -121,7 +116,7 @@ public class MediaService {
 			return listToReturn;
 		}
 		
-		return null;
+		return new ArrayList<>();
 	}
 
 
@@ -133,7 +128,7 @@ public class MediaService {
 	 * @param file
 	 * @throws IOException
 	 */
-	public void createFile(MultipartFile file, Media media) throws IllegalArgumentException {
+	public void createFile(MultipartFile file, Media media) {
 		// Check if the media not already exist
 		List<Media> mediaEntity = mediaPersistence.retrieveMetaDataFromIdOrName(media.getId(), media.getName());
 		if (!CollectionUtils.isEmpty(mediaEntity)) {
@@ -141,13 +136,6 @@ public class MediaService {
 			throw new IllegalArgumentException(ErrorMedia.ERR_MEDIA_03.toString());
 		}
 		// Build the media path
-		String pathMedia = retrievePathByType(media);
-		if(!pathMedia.equals("")){
-			media.setPath(pathMedia);
-		}else{
-			LOG.error("Invalid type of media");
-			throw new IllegalArgumentException(ErrorMedia.ERR_MEDIA_04.toString());
-		}
 		
 		MetaDataMediaEntity metadata = mediaPersistence.createMetaDataMedia(media);
 		if (metadata != null) {
@@ -169,19 +157,11 @@ public class MediaService {
 
 	}
 
-	private String retrievePathByType(Media media) {
-		switch (media.getTypeMedia()) {
-		default:
-			break;
-		}
-		return "";
-	}
-
 	public void store(MultipartFile file,Media media) throws IOException {
 		try {
 			Path path = Paths.get(media.getPath());
 			Files.createDirectories(path);
-			LOG.debug("Try to create file into {}", path.toUri().toString());
+			LOG.debug("Try to create file into {}", path.toUri());
 			if (file.isEmpty()) {
 				throw new IOException("Failed to store empty file " + file.getOriginalFilename());
 			}
@@ -191,8 +171,4 @@ public class MediaService {
 		}
 	}
 
-	@PostConstruct
-	public void init() throws IOException {
-
-	}
 }

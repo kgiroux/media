@@ -19,7 +19,7 @@ public class LauncherService {
      * Chargement du port depuis un fichier de configuration
      */
     @Value("${server.port}")
-    private int SERVER_PORT;
+    private static int serverPort;
 
 
     
@@ -29,14 +29,14 @@ public class LauncherService {
      * @param args
      * @throws Exception
      */
-    public static void main(final String[] args) throws Exception {
+    public static void main(final String[] args) {
         SpringApplication.run(LauncherService.class, args);
     }
 
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-        factory.setPort(SERVER_PORT);
+        factory.setPort(serverPort);
         return factory;
     }
 	
