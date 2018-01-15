@@ -33,7 +33,7 @@
 		</appender>
 		
 		<!-- Send logs to both console and file log -->
-        <logger name="com.thalesgroup.trip" level="INFO" additivity="false">
+        <logger name="com.giroux.kevin.dofustuff" level="INFO" additivity="false">
                 <appender-ref ref="FILE" />
                 <appender-ref ref="STDOUT" />
         </logger>

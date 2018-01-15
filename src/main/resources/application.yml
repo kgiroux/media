@@ -16,6 +16,21 @@ spring:
       max-file-size: 500MB
       max-request-size: 100MB
       location: /tmp
+eureka:
+  instance:
+    prefer-ip-address: true
+    appname: @component.name@
+    instanceId: @component.name@:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://@eureka.host@:@eureka.port@/eureka/
+  ribbon:
+    enabled: true
+
 #server configuration    
 server:
   tomcat:

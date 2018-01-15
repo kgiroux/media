@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Classe permettant de gérer les exceptions au niveau des WebServices
  * 
- * @author thales
+ * @author girouxkevin
  *
  */
 @ResponseStatus(HttpStatus.BAD_REQUEST)

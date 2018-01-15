@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.giroux.kevin.dofustuff</groupId>
 	<artifactId>media</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
+	<version>0.1.1-SNAPSHOT</version>
+	<name>DofuStuff- Media</name>
 	<parent>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<groupId>org.springframework.boot</groupId>
@@ -13,8 +13,12 @@
 	</parent>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<component.name>${project.artifactId}</component.name>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<eureka.host>51.254.133.167</eureka.host>
+		<eureka.port>80</eureka.port>
 	</properties>
 
 	<repositories>
@@ -51,7 +55,7 @@
 		<dependency>
 			<groupId>com.giroux.kevin.dofustuff</groupId>
 			<artifactId>commons</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>0.1.2-SNAPSHOT</version>
 		</dependency>
 		<!-- ###### Spring Boot ####### -->
 		<dependency>
@@ -72,14 +76,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		<!-- End of AOP - Interceptor for WS -->
 		<dependency>
@@ -109,18 +105,6 @@
 			</exclusions>
 		</dependency>
 		<!-- End of Spring cloud dependencies -->
-		<!-- zxing -->
-		<dependency>
-		  <groupId>com.google.zxing</groupId>
-		  <artifactId>core</artifactId>
-		  <version>2.0</version>
-		</dependency>
-		<dependency>
-		  <groupId>com.google.zxing</groupId>
-		  <artifactId>javase</artifactId>
-		  <version>2.0</version>
-		</dependency>
-		<!-- End of zxing -->
 	</dependencies>
 
 	<build>

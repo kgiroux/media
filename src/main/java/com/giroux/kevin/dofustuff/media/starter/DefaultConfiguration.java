@@ -9,7 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * Classe permettant de réaliser la configuration Spring (remplacement du
  * fichier xml)
  * 
- * @author thales
+ * @author girouxkevin
  *
  */
 @Configuration

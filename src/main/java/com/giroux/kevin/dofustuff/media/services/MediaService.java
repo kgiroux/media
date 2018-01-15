@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Ensemble de services permettant de gérer les services
  *
- * @author thales
+ * @author girouxkevin
  *
  */
 @Service("mediaService")
